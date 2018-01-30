@@ -1,6 +1,6 @@
 ## Syntax
 ```
-<var> ::= {variables}
+<var>  ::= {variables}
 <expr> ::= <var>
         |  λ <var>. <expr>
         |  <expr> <expr>
