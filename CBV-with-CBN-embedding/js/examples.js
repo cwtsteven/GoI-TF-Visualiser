@@ -17,7 +17,7 @@ var fig10_2 =
 	+ '\n' +	'p ⊡ p';
 
 var meta_learning = 
-				'let (g,q) ='
+				'let (g,q) = abs'
 	+ '\n' +	'  (let (f,p) = abs {1} in f ({2} ⊠ p))'
 	+ '\n' +	'in'
 	+ '\n' +	'g q';
