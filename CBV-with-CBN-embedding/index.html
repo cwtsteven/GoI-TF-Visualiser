@@ -22,20 +22,21 @@
   				select: function(event, ui) {
   					var prog;
   					switch($("#sm-example option:selected").val()) {
+  						case "new": prog = ''; break;
   						case "simple_abd": prog = simple_abd_prog; break;
-			              case "higher_abd": prog = higher_abd_prog; break;
-			              case "fig10_1": prog = fig10_1; break;
-			              case "fig10_2": prog = fig10_2; break;
-			              case "meta_learning": prog = meta_learning; break;
-			              case "fact": prog = fact_prog; break;
-			              case "church": prog = church_numerals_prog; break;
-			              case "ci": prog = confidence_interval; break;
-			              case "wr": prog = weighted_regression; break;
-			              case "grad": prog = gradient_descent_prog; 
-			                           alert("This example might take hours to complete due to the animation." 
-			                                +"\nWe recommend you to disable drawing by unchecking the 'Draw' checkbox"
-			                                +"\nand enable it again at the end to see the resulting graph."); 
-			                           break;
+			            case "higher_abd": prog = higher_abd_prog; break;
+			            case "fig10_1": prog = fig10_1; break;
+			            case "fig10_2": prog = fig10_2; break;
+			            case "meta_learning": prog = meta_learning; break;
+			            case "fact": prog = fact_prog; break;
+			            case "church": prog = church_numerals_prog; break;
+			            case "ci": prog = confidence_interval; break;
+			            case "wr": prog = weighted_regression; break;
+			            case "grad": prog = gradient_descent_prog; 
+			                         alert("This example might take hours to complete due to the animation." 
+			                              +"\nWe recommend you to disable drawing by unchecking the 'Draw' checkbox"
+			                              +"\nand enable it again at the end to see the resulting graph."); 
+			                         break;
   					}
   					$("#ta-program").val(prog);
   					$("#btn-make-graph").click();
@@ -50,7 +51,8 @@
 <body>
 	<div class="left">
 		<select id="sm-example">
-			<option value='simple_abd'>simple graph abstraction</option>
+			<option value='new'>new program</option>
+			<option value='simple_abd' selected>simple graph abstraction</option>
 		    <option value='higher_abd'>deep graph abstraction</option>
 		    <option value='fig10_1'>contraction of cells (1)</option>
 		    <option value='fig10_2'>contraction of cells (2)</option>
