@@ -1,24 +1,24 @@
 var simple_abd_prog = 
-		   		'let f@p = {1} + 2 in'
+		   		'let (f,p) = abs {1} + 2 in'
 	+ '\n' + 	'f p';
 
 var higher_abd_prog =
 				'let y = {2} + 1 in'
 	+ '\n' + 	'let m = λx.{3} + y + x in'
-	+ '\n' +	'let f@p = m in'
+	+ '\n' +	'let (f,p) = abs m in'
 	+ '\n' +	'f p 7';
 
 var fig10_1 = 
-				'let f@p = (λx.x+x) {1} in'
+				'let (f,p) = abs (λx.x+x) {1} in'
 	+ '\n' +	'p ⊡ p';
 
 var fig10_2 = 
-				'let f@p = {1} + {1} in'
+				'let (f,p) = abs {1} + {1} in'
 	+ '\n' +	'p ⊡ p';
 
 var meta_learning = 
-				'let g@q ='
-	+ '\n' +	'  (let f@p = {1} in f ({2} ⊠ p))'
+				'let (g,q) ='
+	+ '\n' +	'  (let (f,p) = abs {1} in f ({2} ⊠ p))'
 	+ '\n' +	'in'
 	+ '\n' +	'g q';
 
@@ -36,6 +36,27 @@ var church_numerals_prog =
 + '\n' + 'let succ = λn.λf.λx.f(n f x) in'
 + '\n' + 'let zero = λf.λx.x in'
 + '\n' + 'plus (succ zero) (succ zero) inc 0'
+
+var confidence_interval =
+		 'let f = λa.λb.λx.a * x + b in'
++ '\n' + 'let pair = λx.λy.λz.z x y in'
++ '\n' + 'let fst = λp.p (λx.λy.x) in'
++ '\n' + 'let a = {1} in' 
++ '\n' + 'let ci = pair (f a {2}) (f a {3}) in'
++ '\n' + 'let (pcim, p) = abs ci in' 
++ '\n' + 'let cim = pcim p in' 
++ '\n' + 'fst cim 7'
+
+var weighted_regression =
+		 'let f = λa.λb.λx.a * x + b in'
++ '\n' + 'let pair = λx.λy.λz.z x y in'
++ '\n' + 'let fst = λp.p (λx.λy.x) in'
++ '\n' + 'let a = {1} in' 
++ '\n' + 'let b = {2} in'
++ '\n' + 'let wr = pair (f a {2}) (f b {3}) in'
++ '\n' + 'let (pwrm, p) = abs wr in' 
++ '\n' + 'let wrm = pwrm p in' 
++ '\n' + 'fst wrm 7'
 
 // y = 2x + 10
 var gradient_descent_prog = 	  
@@ -64,6 +85,6 @@ var gradient_descent_prog =
 + '\n' + 'in'
 + '\n' 
 + '\n' + 'let m = λx.{1} * x + {0} in'
-+ '\n' + 'let f@ps = m in'
++ '\n' + 'let (f,ps) = abs m in'
 + '\n' + "let m' = f (learn f ps loss 0.001) in"
 + '\n' + "m' 7";

@@ -53,7 +53,7 @@ require(["jquery", "renderer", "goi-machine"],
 		});
 
 		$("#btn-info").click(function (event) {
-		      alert("'λ' = \\lambda\n'⊞' = \\sq+\n'⊠' = \\sq*\n'⊡' = \\sq.");
+		      alert(grammar + "\n\n'λ' = \\lambda\n'⊞' = \\sq+\n'⊠' = \\sq*\n'⊡' = \\sq.");
 		});
 
 		$('#cb-show-key').change(function() {
@@ -158,10 +158,17 @@ function specialChar(textarea) {
 	}
 }
 
-/*
-var info =
-      "Instructions:" +
-+ "\n  1. Choose an example from the drop down menu or create your own program"
-+ "\n  2. Click '>>' button to display the graph"
-+ "\n  3. Click ";
-*/
+var grammar = 
+         '<var> ::= {variables}'
++ '\n' + '<num> ::= {num}'
++ '\n' + '<expr> ::= <var>'
++ '\n' + '\t' + '| λ <var>. <expr>'
++ '\n' + '\t' + '| <expr> <expr>'
++ '\n' + '\t' + '| <num>'
++ '\n' + '\t' + '| <expr> + <expr> | <expr> - <expr> | <expr> * <expr> | <expr> / <expr>'
++ '\n' + '\t' + '| <expr> ⊞ <expr> | <expr> ⊠ <expr> | <expr> ⊡ <expr>  '
++ '\n' + '\t' + '| {<num>}'
++ '\n' + '\t' + '| A(<var>,<var>). <expr>'
++ '\n' + '\t' + '| fold(<expr>,<expr>)'
++ '\n' + '\t' + '| let <var> = <expr> in <expr>'
++ '\n' + '\t' + '| let (<var>,<var>) = abs <expr> in <expr>'

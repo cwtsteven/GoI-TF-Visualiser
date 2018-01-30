@@ -130,9 +130,13 @@ class Lexer {
       case ',':
         this._token = new Token(Token.COMMA);
         break;
-
+/*
       case '@':
         this._token = new Token(Token.APP);
+        break;
+*/
+      case 'A': 
+        this._token = new Token(Token.ABDUCT);
         break;
 
       default:
@@ -164,8 +168,8 @@ class Lexer {
             this._token = new Token(Token.THEN);
           else if (str == "else")
             this._token = new Token(Token.ELSE);
-          else if (str == "abd")
-            this._token = new Token(Token.ABDUCT);
+          else if (str == "abs")
+            this._token = new Token(Token.ABS);
           else if (str == "fold")
             this._token = new Token(Token.FOLD);
           else

@@ -27,18 +27,23 @@ class Parser {
     } 
     
     else if (this.lexer.skip(Token.LET)) {
-      const id = this.lexer.token(Token.LCID);
       
-      if (this.lexer.skip(Token.APP)) {
+      if (this.lexer.skip(Token.LPAREN)) {
+        const id = this.lexer.token(Token.LCID);
+        this.lexer.skip(Token.COMMA)
         const id2 = this.lexer.token(Token.LCID);
+        this.lexer.skip(Token.RPAREN)
         this.lexer.match(Token.DEFINE);
+        this.lexer.match(Token.ABS);
         const model = this.term(ctx);
         this.lexer.match(Token.IN);
         const term = this.term([id2].concat([id].concat(ctx)));
         return new Application(new Abduction(id, id2, term), model);
       }
 
-      else if (this.lexer.skip(Token.DEFINE)) {        
+      else {
+        const id = this.lexer.token(Token.LCID);
+        this.lexer.skip(Token.DEFINE);
         const N = this.term(ctx);
         this.lexer.match(Token.IN);
         const M = this.term([id].concat(ctx));
@@ -159,10 +164,7 @@ class Parser {
   // atom ::= LPAREN term RPAREN
   //        | LCID
   //        | INT
-  //        | TRUE
-  //        | FALSE
-  //        | NOT term
-  //        | LSPAREN int RSPAREN
+  //        | {INT}
   atom(ctx) {
     if (this.lexer.skip(Token.LPAREN)) {
       const term = this.term(ctx);
@@ -177,6 +179,7 @@ class Parser {
       const n = this.lexer.token(Token.INT);
       return new Constant(n);
     }
+    /*
     else if (this.lexer.skip(Token.TRUE)) {
       return new Constant(true);
     } 
@@ -187,6 +190,7 @@ class Parser {
       const term = this.term(ctx);
       return new UnaryOp(UnOpType.Not, "~", term);
     }
+    */
     else if (this.lexer.skip(Token.LCPAREN)) {
       const n = this.lexer.token(Token.INT);
       this.lexer.match(Token.RCPAREN);

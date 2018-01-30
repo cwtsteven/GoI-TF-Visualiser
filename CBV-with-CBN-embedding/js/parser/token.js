@@ -20,7 +20,7 @@ class Token {
   'DOT', 
   'COMMA',
   
-  'APP',
+  'ABS',
 
   'LET',
   'DEFINE',
