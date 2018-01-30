@@ -1,11 +1,13 @@
 ## Syntax
 ```
-<var>  ::= {variables}
+<var> ::= {variables}
+<num> ::= {num}
 <expr> ::= <var>
         |  λ <var>. <expr>
         |  <expr> <expr>
-        |  $ <expr>
-        |  <expr> $ <expr>
+        |  <num>
+        |  <expr> + <expr>  |  <expr> - <expr>  |  <expr> * <expr>  |  <expr> / <expr>
+        |  <expr> ⊞ <expr>  |  <expr> ⊠ <expr>  |  <expr> ⊡ <expr>  
         |  {<num>}
         |  abd(<var>,<var>). <expr>
         |  fold(<expr>,<expr>)
