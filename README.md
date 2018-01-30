@@ -1,4 +1,4 @@
-# Syntax
+## Syntax
 ```
 <var> ::= {variables}
 <expr> ::= <var>
