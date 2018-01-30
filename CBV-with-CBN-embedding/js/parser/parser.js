@@ -77,11 +77,11 @@ class Parser {
       return new Abduction(id, id2, term);
     }
     else if (this.lexer.skip(Token.FOLD)) {
-      this.lexer.match(Token.LPAREN);
-      const term1 = this.term(ctx);
-      this.lexer.match(Token.COMMA);
-      const term2 = this.term(ctx);
-      this.lexer.match(Token.RPAREN);
+      //this.lexer.match(Token.LPAREN);
+      const term1 = this.atom(ctx);
+      //this.lexer.match(Token.COMMA);
+      const term2 = this.atom(ctx);
+      //this.lexer.match(Token.RPAREN);
       return new Folding(term1, term2);
     }
     else {

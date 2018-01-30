@@ -169,6 +169,6 @@ var grammar =
 + '\n' + '\t' + '| <expr> ⊞ <expr> | <expr> ⊠ <expr> | <expr> ⊡ <expr>  '
 + '\n' + '\t' + '| {<num>}'
 + '\n' + '\t' + '| A(<var>,<var>). <expr>'
-+ '\n' + '\t' + '| fold(<expr>,<expr>)'
++ '\n' + '\t' + '| fold <expr> <expr>'
 + '\n' + '\t' + '| let <var> = <expr> in <expr>'
 + '\n' + '\t' + '| let (<var>,<var>) = abs <expr> in <expr>'

@@ -1,26 +1,26 @@
 var simple_abd_prog = 
-		   		'let (f,p) = abs {1} + 2 in'
-	+ '\n' + 	'f p';
+	   		'let (f,p) = abs {1} + 2 in'
++ '\n' + 	'f p';
 
 var higher_abd_prog =
-				'let y = {2} + 1 in'
-	+ '\n' + 	'let m = λx.{3} + y + x in'
-	+ '\n' +	'let (f,p) = abs m in'
-	+ '\n' +	'f p 7';
+			'let y = {2} + 1 in'
++ '\n' + 	'let m = λx.{3} + y + x in'
++ '\n' +	'let (f,p) = abs m in'
++ '\n' +	'f p 7';
 
 var fig10_1 = 
-				'let (f,p) = abs (λx.x+x) {1} in'
-	+ '\n' +	'p ⊡ p';
+			'let (f,p) = abs (λx.x+x) {1} in'
++ '\n' +	'p ⊡ p';
 
 var fig10_2 = 
-				'let (f,p) = abs {1} + {1} in'
-	+ '\n' +	'p ⊡ p';
+			'let (f,p) = abs {1} + {1} in'
++ '\n' +	'p ⊡ p';
 
 var meta_learning = 
-				'let (g,q) = abs'
-	+ '\n' +	'  (let (f,p) = abs {1} in f ({2} ⊠ p))'
-	+ '\n' +	'in'
-	+ '\n' +	'g q';
+			'let (g,q) = abs'
++ '\n' +	'  (let (f,p) = abs {1} in f ({2} ⊠ p))'
++ '\n' +	'in'
++ '\n' +	'g q';
 
 var fact_prog = 	   
 		 'let fact = rec(f,x).'
@@ -74,7 +74,7 @@ var gradient_descent_prog =
 + '\n' + '    let old = loss f ps in'
 + '\n' + '    ((0 - (new - old) / d) * rate) ⊠ e'
 + '\n' + '  in'
-+ '\n' + '  fold (λe.λps.(g e) ⊞ ps, ps)'
++ '\n' + '  fold (λe.λps.(g e) ⊞ ps) ps'
 + '\n' + 'in'
 + '\n' 
 + '\n' + 'let learn = λf.λps.λloss.λrate.'
