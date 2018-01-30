@@ -1,4 +1,5 @@
 # Syntax
+```
 <var> ::= {variables}
 <expr> ::= <var>
         |  λ <var>. <expr>
@@ -10,3 +11,4 @@
         |  fold(<expr>,<expr>)
         |  let <var> = <expr> in <expr>
         |  let <var>@<var> = <expr> in <expr>
+```
