@@ -9,8 +9,8 @@
          | <expr> + <expr> | <expr> - <expr> | <expr> * <expr> | <expr> / <expr>
          | <expr> ⊞ <expr> | <expr> ⊠ <expr> | <expr> ⊡ <expr>  
          | {<num>}
-         | abd(<var>,<var>). <expr>
+         | A(<var>,<var>). <expr>
          | fold(<expr>,<expr>)
          | let <var> = <expr> in <expr>
-         | let <var>@<var> = <expr> in <expr>
+         | let (<var>,<var>) = abs <expr> in <expr>
 ```
