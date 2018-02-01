@@ -203,13 +203,14 @@ class Promo extends Expo {
 		for (let pax of Array.from(boxWrapper.pAuxs)) { //} boxWrapper.connectedPauxs()) {
 			boxWrapper.pAuxs.splice(boxWrapper.pAuxs.indexOf(pax), 1);
 			var outLink = pax.findLinksOutOf(null)[0];
-			var weak = new Weak(pax.name).addToGroup(this.graph.child);
+			//var weak = new Weak(pax.name).addToGroup(this.graph.child);
+			var weak = new Weak(pax.name).addToGroup(this.group.group.group.group);
 			weak.text = "Ɔ0";
 			map.set(weak.key, pax.key);
 			outLink.changeFrom(weak.key, 'n');
 			var param = this.searchForParam(weak, weak, promoBox, map, vecMatch, params, values);
 			this.changePauxToAux(pax);
-			this.deletePaxFromOutterGroup(weak);
+			//this.deletePaxFromOutterGroup(weak);
 		}
 		vecMatch.text = "P" + vecMatch.inLinks.length;
 		promoWrapper.pAuxs = promoWrapper.createPaxsPOnTopOf(boxWrapper.pAuxs);
