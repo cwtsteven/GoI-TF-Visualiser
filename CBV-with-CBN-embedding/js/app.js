@@ -125,6 +125,7 @@ require(["jquery", "renderer", "goi-machine"],
 
 		renderer.init("#graph");
 		//renderer.init({element: "#graph", zoom: {extent: [0.1, 10]}})
+		$("#ta-program").val(simple_abd_prog);
   		$("#btn-make-graph").click();
 	}
 );

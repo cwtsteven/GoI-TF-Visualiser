@@ -355,6 +355,11 @@ define('goi-machine', ['gc', 'graph', 'node', 'group', 'link', 'term', 'token', 
 					, 'nodes/recur', 'nodes/start', 'nodes/unop', 'nodes/weak'
 					, 'nodes/abduct', 'nodes/fold', 'nodes/parameter', 'nodes/pax-param', 'nodes/vec-binop', 'nodes/vec-match', 'nodes/vec'],
 	function() {
+		require(['gc', 'graph', 'node', 'group', 'link', 'term', 'token', 'op', 'parser/ast', 'parser/token', 'parser/lexer', 'parser/parser'
+					, 'nodes/expo', 'nodes/abs', 'nodes/app', 'nodes/binop', 'nodes/const', 'nodes/contract'
+					, 'nodes/der', 'nodes/if', 'nodes/pax', 'nodes/promo'
+					, 'nodes/recur', 'nodes/start', 'nodes/unop', 'nodes/weak'
+					, 'nodes/abduct', 'nodes/fold', 'nodes/parameter', 'nodes/pax-param', 'nodes/vec-binop', 'nodes/vec-match', 'nodes/vec']);
 		return new GoIMachine();	
 	}
 );
