@@ -1,5 +1,5 @@
 # Idealised Tensor Flow Visualiser
-A simulation tool of a GoI-style abstract machine implementing the Idealised Tensor Flow programming language. 
+A simulation tool of a GoI-style abstract machine implementing the *Idealised Tensor Flow* programming language. 
 
 ## Usage
 1. Select an example, or type in your own program in the white text box on the left.
@@ -29,9 +29,9 @@ An execution can be paused by the ❚❚ button, resumed by the ► button, and 
 - A graph, with the token indicated by the red edge.
   - Its Graphviz source is shown in the gray text box on the left.
 - The token data below the graph, whose top lines are always the latest:
-  - The left data is rewrite flag. The graph is rewritten whenever the flag is raised, i.e. set to <λ> or <!>.
-  - The middle data is computation stack, used to determine the order of evaluating a function and its argument.
-  - The right data is box stack, used to manage duplication of sub-graphs wrapped in a dashed box.
+  - On the left is the rewrite flag. The graph is rewritten whenever the flag is raised, i.e. set to <λ> or <!>.
+  - In the middle is the computation stack, which is used for computing primitive data.  
+  - On the right is the box stack, used to manage duplication of sub-graphs wrapped in a dashed box.
 
 ## For more information
 ### Developers
