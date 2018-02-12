@@ -2,11 +2,11 @@
 A simulation tool of a GoI-style abstract machine implementing the Idealised Tensor Flow programming language. 
 
 ## Usage
-1. Select an example, or enter your own closed lambda-term.
-2. Select an evaluation strategy, or click the >> button if you are happy with the current strategy.
-3. Click the ► button.
+1. Select an example, or type in your own program in the white text box on the left.
+2. Click the >> button to translate a program into the corresponding graph. 
+3. Click the ► button to run the execution. 
 
-Un-checking the Draw button stops drawing graphs. An execution can be paused by the ❚❚ button, resumed by the ► button, and run step-by-step by the ►| button. The ↻ button refreshes the drawing.
+An execution can be paused by the ❚❚ button, resumed by the ► button, and run step-by-step by the ►| button. The ↻ button refreshes the drawing. Un-checking the Draw button stops drawing graphs. 
 
 ## Syntax
 ```
@@ -27,8 +27,18 @@ Un-checking the Draw button stops drawing graphs. An execution can be paused by 
 
 ## What you can see
 - A graph, with the token indicated by the red edge.
-  - Its Graphviz source is shown in the left gray box.
+  - Its Graphviz source is shown in the gray text box on the left.
 - The token data below the graph, whose top lines are always the latest:
   - The left data is rewrite flag. The graph is rewritten whenever the flag is raised, i.e. set to <λ> or <!>.
   - The middle data is computation stack, used to determine the order of evaluating a function and its argument.
   - The right data is box stack, used to manage duplication of sub-graphs wrapped in a dashed box.
+
+## For more information
+### Developers
+[Steven Cheung](http://www.cs.bham.ac.uk/~wtc488/)
+
+### Reference
+[Koko Muroya](http://www.cs.bham.ac.uk/~kxm538/), [Steven Cheung](http://www.cs.bham.ac.uk/~wtc488/), [Dan R. Ghica](http://www.cs.bham.ac.uk/~drg/). **Abductive functional programming, a semantic approach**. *Prepint*. [\[arivx\]](https://arxiv.org/abs/1710.03984)
+
+### Libraries
+This tool uses [graph-viz-d3-js](https://github.com/mstefaniuk/graph-viz-d3-js) for generating diagrams, and [lc-js](https://github.com/tadeuzagallo/lc-js) for parsing programs.
