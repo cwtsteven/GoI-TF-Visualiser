@@ -2,7 +2,7 @@
 A simulation tool of a GoI-style abstract machine implementing the *Idealised Tensor Flow* programming language. 
 
 ## Usage
-1. Select an example, or type in your own program in the white text box on the left.
+1. Select an example, or type in your own program in the white textbox on the left.
 2. Click the >> button to translate a program into the corresponding graph. 
 3. Click the ► button to run the execution. 
 
@@ -25,9 +25,15 @@ An execution can be paused by the ❚❚ button, resumed by the ► button, and 
          | let (<var>,<var>) = abs <expr> in <expr>
 ```
 
+Special charaters can be entered in the white textbox as follows: 
+- `λ` = `\lambda`
+- `⊞` = `\sq+`
+- `⊠` = `\sq*`
+- `⊡` = `\sq.`
+
 ## What you can see
 - A graph, with the token indicated by the red edge.
-  - Its Graphviz source is shown in the gray text box on the left.
+  - Its Graphviz source is shown in the gray textbox on the left.
 - The token data below the graph, whose top lines are always the latest:
   - On the left is the rewrite flag. The graph is rewritten whenever the flag is raised, i.e. set to <λ> or <!>.
   - In the middle is the computation stack, which is used for computing primitive data.  
