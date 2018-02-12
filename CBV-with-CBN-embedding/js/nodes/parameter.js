@@ -1,14 +1,20 @@
-class Param extends Expo {
+define(function(require) {
 
-	constructor(name) {
-		super(null, "¡", name);
+	var Expo = require('nodes/expo');
+
+	class Param extends Expo {
+
+		constructor(name) {
+			super(null, "¡", name);
+		}
+
+		copy() {
+			var newNode = new Param(this.name);
+			newNode.width = this.width;
+			newNode.height = this.height;
+			return newNode;
+		}	
 	}
 
-	copy() {
-		var newNode = new Param(this.name);
-		newNode.width = this.width;
-		newNode.height = this.height;
-		return newNode;
-	}
-	
-}
+	return Param;
+});

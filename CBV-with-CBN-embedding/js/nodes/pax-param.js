@@ -1,11 +1,17 @@
-class PaxParam extends Aux {
+define(function(require) {
 
-	constructor(name) {
-		super(null, "¿", name);
+	var Aux = require('nodes/aux');
+
+	class PaxParam extends Aux {
+
+		constructor(name) {
+			super(null, "¿", name);
+		}
+
+		copy() {
+			return new PaxParam(this.name);
+		}	
 	}
 
-	copy() {
-		return new PaxParam(this.name);
-	}
-	
-}
+	return PaxParam;
+});

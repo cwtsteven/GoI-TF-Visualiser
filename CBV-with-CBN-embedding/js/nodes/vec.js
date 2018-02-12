@@ -1,31 +1,43 @@
-class Vector extends Array {
+define('nodes/vector', function(require) {
 
-	toString() {
-		return '[' + super.toString() + ']';
-	}
+	class Vector extends Array {
 
-	static fromArray(arr) {
-		var vec = new Vector();
-		for (var i=0; i<arr.length; i++) {
-			vec[i] = arr[i];
+		toString() {
+			return '[' + super.toString() + ']';
 		}
-		return vec;
+
+		static fromArray(arr) {
+			var vec = new Vector();
+			for (var i=0; i<arr.length; i++) {
+				vec[i] = arr[i];
+			}
+			return vec;
+		}
+
+		static generateBaseVector(size, i) {
+			var vector = Vector.fromArray(new Array(size).fill(0));
+			vector[i] = 1;
+			return vector;
+		}
 	}
 
-	static generateBaseVector(size, i) {
-		var vector = Vector.fromArray(new Array(size).fill(0));
-		vector[i] = 1;
-		return vector;
-	}
-}
+	return Vector;
+});
 
-class Vec extends Const {
+define('nodes/vec', function(require) {
 
-	constructor(name) {
-		super(name);
+	var Const = require('nodes/const');
+
+	class Vec extends Const {
+
+		constructor(name) {
+			super(name);
+		}
+
+		copy() {
+			return new Vec(this.name);
+		}
 	}
 
-	copy() {
-		return new Vec(this.name);
-	}
-}
+	return Vec;
+});

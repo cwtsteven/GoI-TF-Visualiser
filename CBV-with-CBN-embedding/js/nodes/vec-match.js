@@ -1,14 +1,20 @@
-class VecMatch extends Node {
+define(function(require) {
 
-	constructor() {
-		super(null, "", null);
-		this.inLinks = [];
-	}
-	
-	copy() {
-		var newNode = new VecMatch();
-		newNode.text = this.text;
-		return newNode;
+	var Node = require('node');
+
+	class VecMatch extends Node {
+
+		constructor() {
+			super(null, "", null);
+			this.inLinks = [];
+		}
+		
+		copy() {
+			var newNode = new VecMatch();
+			newNode.text = this.text;
+			return newNode;
+		}
 	}
 
-}
+	return VecMatch;
+});

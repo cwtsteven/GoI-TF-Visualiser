@@ -1,14 +1,28 @@
-class Aux extends Expo {
-	
-}
+define('nodes/aux', function(require) {
 
-class Pax extends Aux {
+	var Expo = require('nodes/expo');
 
-	constructor(name) {
-		super(null, "?", name);
+	class Aux extends Expo {
+		
 	}
 
-	copy() {
-		return new Pax(this.name);
+	return Aux;
+});
+
+define('nodes/pax', function(require) {
+
+	var Aux = require('nodes/aux');
+
+	class Pax extends Aux {
+
+		constructor(name) {
+			super(null, "?", name);
+		}
+
+		copy() {
+			return new Pax(this.name);
+		}
 	}
-}
+
+	return Pax;
+});

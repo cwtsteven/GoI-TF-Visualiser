@@ -1,11 +1,17 @@
-class Abduct extends Node {
+define(function(require) {
+	var Node = require('node');
 
-	constructor() {
-		super(null, "A", null);
+	class Abduct extends Node {
+
+		constructor() {
+			super(null, "A", null);
+		}
+
+		copy() {
+			return new Abduct();
+		}
+
 	}
 
-	copy() {
-		return new Abduct();
-	}
-
-}
+	return Abduct;
+});

@@ -1,58 +1,63 @@
-class Token {
-  /**
-   * type should be one of the valid token types list below, and value is an
-   * optional value that can carry any extra information necessary for a given
-   * token type. (e.g. the matched string for an identifier)
-   */
-  constructor(type, value, pred) {
-    this.type = type;
-    this.value = value;
-    this.pred = pred;
-  }
-};
+define(function() {  
 
-[
-  'EOF', // we augment the tokens with EOF, to indicate the end of the input.
-  'LAMBDA',
-  'LPAREN',
-  'RPAREN',
-  'LCID',
-  'DOT', 
-  'COMMA',
-  
-  'ABS',
+  class Token {
+    /**
+     * type should be one of the valid token types list below, and value is an
+     * optional value that can carry any extra information necessary for a given
+     * token type. (e.g. the matched string for an identifier)
+     */
+    constructor(type, value, pred) {
+      this.type = type;
+      this.value = value;
+      this.pred = pred;
+    }
+  };
 
-  'LET',
-  'DEFINE',
-  'IN',
+  [
+    'EOF', // we augment the tokens with EOF, to indicate the end of the input.
+    'LAMBDA',
+    'LPAREN',
+    'RPAREN',
+    'LCID',
+    'DOT', 
+    'COMMA',
+    
+    'ABS',
 
-  'REC',
+    'LET',
+    'DEFINE',
+    'IN',
 
-  'INT',
+    'REC',
 
-  'TRUE',
-  'FALSE',
+    'INT',
 
-  'NOT',
+    'TRUE',
+    'FALSE',
 
-  'AND',
-  'OR',
-  'PLUS',
-  'SUB',
-  'MULT',
-  'DIV',
-  'LTE',
-  'VECPLUS',
-  'VECMULT',
-  'VECDOT',
-  
-  'IF',
-  'THEN',
-  'ELSE',
+    'NOT',
 
-  'LCPAREN',
-  'RCPAREN',
-  'ABDUCT',
-  'COMMA',
-  'FOLD',
-].forEach(token => Token[token] = token);
+    'AND',
+    'OR',
+    'PLUS',
+    'SUB',
+    'MULT',
+    'DIV',
+    'LTE',
+    'VECPLUS',
+    'VECMULT',
+    'VECDOT',
+    
+    'IF',
+    'THEN',
+    'ELSE',
+
+    'LCPAREN',
+    'RCPAREN',
+    'ABDUCT',
+    'COMMA',
+    'FOLD',
+  ].forEach(token => Token[token] = token);
+
+  return Token;
+});
