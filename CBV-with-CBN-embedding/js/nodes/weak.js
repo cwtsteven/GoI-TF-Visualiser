@@ -13,5 +13,5 @@ define(function(require) {
 		}
 	}
 
-	return Expo;
+	return Weak;
 });

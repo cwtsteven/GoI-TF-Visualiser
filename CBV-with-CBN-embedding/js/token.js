@@ -20,10 +20,12 @@ define(function() {
 
 	class MachineToken {
 
+		static CompData() { return CompData; }
+
+		static RewriteFlag() { return RewriteFlag; }
+
 		constructor() {
 			this.reset();
-			this.CompData = CompData;
-			this.RewriteFlag = RewriteFlag;
 		}
 
 		setLink(link) {

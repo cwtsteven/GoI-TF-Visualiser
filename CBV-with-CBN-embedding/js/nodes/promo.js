@@ -1,21 +1,18 @@
-define(function(require, exports) {
+define(function(require) {
 
-	var CompData = require('token').CompData;
-	var RewriteFlag = require('token').RewriteFlag;
-	var BoxWrapper = require('box-wrapper');
+	var CompData = require('token').CompData();
+	var RewriteFlag = require('token').RewriteFlag();
+	//var BoxWrapper = require('box-wrapper');
 	var Link = require('link');
 	var Expo = require('nodes/expo');
 	var Der = require('nodes/der');
 	var Contract = require('nodes/contract');
 	var VecMatch = require('nodes/vec-match');
 	var Abduct = require('nodes/abduct');
-	var Param = require('nodes/parameter');
 	var PaxParam = require('nodes/pax-param');
 	var Weak = require('nodes/weak');
 	var Vec = require('nodes/vec');
-	var Abs = require('nodes/abs');
 	var Vector = require('nodes/vector');
-	var Pax = require('nodes/pax');
 	var VecBinOp = require('nodes/vec-binop');
 	var BinOpType = require('op').BinOpType;
 
@@ -173,7 +170,8 @@ define(function(require, exports) {
 						prev.delete();
 					}
 					else if (prev instanceof Abduct) {
-						nextPromo.abduct(prev);
+						//nextPromo.abduct(prev);
+						nextPromo.group.abduct(prev);
 					}
 					nextPromo = this.searchForPromo(pax);
 					prev = this.graph.findNodeByKey(nextPromo.findLinksInto(null)[0].from);
@@ -202,108 +200,6 @@ define(function(require, exports) {
 			}
 		}
 
-		abduct(prev) {
-			var boxWrapper = this.group;
-			var promoWrapper = BoxWrapper.create().addToGroup(boxWrapper.group);
-			var promoBox = promoWrapper.box;
-			var promo = promoWrapper.prin;
-
-			var abs = new Abs().addToGroup(promoBox);
-			new Link(promo.key, abs.key, "n", "s").addToGroup(promoWrapper);
-			var der = new Der().addToGroup(promoBox);
-			new Link(abs.key, der.key, "e", "s").addToGroup(promoBox);
-			boxWrapper.changeToGroup(promoBox);
-			var prevLink = boxWrapper.prin.findLinksInto(null)[0];
-			prevLink.changeFrom(der.key, 'n');
-			prevLink.changeToGroup(promoBox);
-			var vecMatch = new VecMatch().addToGroup(promoBox);
-			new Link(vecMatch.key, abs.key, "nw", "w").addToGroup(promoBox).reverse = true;
-
-			var params = [];
-			var values = new Vector();
-			var map = new Map();
-			for (let pax of Array.from(boxWrapper.pAuxs)) { //} boxWrapper.connectedPauxs()) {
-				boxWrapper.pAuxs.splice(boxWrapper.pAuxs.indexOf(pax), 1);
-				var outLink = pax.findLinksOutOf(null)[0];
-				//var weak = new Weak(pax.name).addToGroup(this.graph.child);
-				var weak = new Weak(pax.name).addToGroup(this.group.group.group.group);
-				weak.text = "Ɔ0";
-				map.set(weak.key, pax.key);
-				outLink.changeFrom(weak.key, 'n');
-				var param = this.searchForParam(weak, weak, promoBox, map, vecMatch, params, values);
-				this.changePauxToAux(pax);
-				//this.deletePaxFromOutterGroup(weak);
-			}
-			vecMatch.text = "P" + vecMatch.inLinks.length;
-			promoWrapper.pAuxs = promoWrapper.createPaxsPOnTopOf(boxWrapper.pAuxs);
-
-			var newBoxWrapper = BoxWrapper.create().addToGroup(boxWrapper.group);
-			var newBox = newBoxWrapper.box;
-			var newPromo = newBoxWrapper.prin;
-			var vec = new Vec(values).addToGroup(newBox);
-			var newLink = new Link(newPromo.key, vec.key, "n", "s").addToGroup(newBoxWrapper);
-
-			var leftLink = prev.findLinksInto("w")[0];
-			var rightLink = prev.findLinksInto("e")[0];
-			leftLink.changeTo(promo.key, 's');
-			rightLink.changeTo(newPromo.key, 's');
-			prev.delete();
-		}
-
-		searchForParam(prevNode, node, targetBox, map, vecMatch, params, values) {
-			var nextNode = node.graph.findNodeByKey(node.findLinksOutOf(null)[0].to);
-			if (node instanceof PaxParam || node instanceof Weak) {
-				return this.searchForParam(prevNode, nextNode, targetBox, map, vecMatch, params, values);
-			}
-			else if (node instanceof Contract) {
-				if (!map.has(node.key)) {
-					var newCon = new Contract(node.name).addToGroup(targetBox);
-					map.set(node.key, newCon.key);
-				}
-				new Link(map.get(prevNode.key), map.get(node.key), "n", "s").addToGroup(targetBox);
-
-				return this.searchForParam(node, nextNode, targetBox, map, vecMatch, params, values);
-			}
-			else if (node instanceof Param) {
-				if (params.indexOf(nextNode) == -1) {
-					params.push(nextNode);
-					values.push(nextNode.name);
-					var link = new Link(map.get(prevNode.key), vecMatch.key, "n", "s").addToGroup(targetBox);
-					vecMatch.inLinks.push(link);
-				}
-				return nextNode; // return the whole term
-			}
-		}
-
-		changePauxToAux(node) {
-			if (node instanceof PaxParam) {
-				var pax = new Pax(node.name).addToGroup(node.group);
-				var inLink = node.findLinksInto(null)[0];
-				inLink.changeTo(pax.key, 's');
-				node.findLinksOutOf(null)[0].changeFrom(pax.key, 'n');
-				node.group.auxs.push(pax);
-				node.group.pAuxs.splice(node.group.pAuxs.indexOf(node), 1);
-				node.delete();
-				this.changePauxToAux(this.graph.findNodeByKey(inLink.from));
-			}
-			else if (node instanceof Der) {
-				node.text = "D";
-				var inLink = node.findLinksInto(null)[0];
-				this.changePauxToAux(this.graph.findNodeByKey(inLink.from));
-			}
-			else if (node instanceof Contract) {
-				node.text = "C";
-				for (let link of node.findLinksInto(null)) {
-					this.changePauxToAux(this.graph.findNodeByKey(link.from));
-				}
-			}
-			else if (node instanceof Weak) {
-				node.text = "C0";
-			}
-			else 
-				return;
-		}
-
 		deletePaxFromOutterGroup(node) {
 			if (node instanceof Weak) {
 				var outLink = node.findLinksOutOf(null)[0];
@@ -322,6 +218,6 @@ define(function(require, exports) {
 		}
 	}
 
-	exports.Promo = Promo;
+	//exports.Promo = Promo;
 	return Promo;
 });

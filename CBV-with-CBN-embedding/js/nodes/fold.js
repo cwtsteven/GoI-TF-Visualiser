@@ -1,8 +1,8 @@
 define(function(require) {
 	var Node = require('node');
 	var Link = require('link');
-	var CompData = require('token').CompData;
-	var RewriteFlag = require('token').RewriteFlag;
+	var CompData = require('token').CompData();
+	var RewriteFlag = require('token').RewriteFlag();
 	var Weak = require('nodes/weak');
 	var Der = require('nodes/der');
 	var Vec = require('nodes/vec');	
@@ -10,6 +10,7 @@ define(function(require) {
 	var App = require('nodes/app');
 	var Contract = require('nodes/contract');
 	var Term = require('term');
+	var BoxWrapper = require('box-wrapper');
 
 	class Fold extends Node {
 
@@ -40,7 +41,6 @@ define(function(require) {
 		}
 
 		rewrite(token, nextLink) {
-			console.log(token);
 			if (token.rewriteFlag.substring(0,3) == RewriteFlag.F_FOLD && nextLink.to == this.key) {
 				var n = parseInt(token.rewriteFlag.substring(4, token.rewriteFlag.length-1));
 
