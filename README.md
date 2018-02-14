@@ -43,7 +43,7 @@ Special charaters can be entered in the white textbox as follows:
 ### Developers
 [Steven Cheung](http://www.cs.bham.ac.uk/~wtc488/)
 
-### Reference
+### References
 [Koko Muroya](http://www.cs.bham.ac.uk/~kxm538/), [Steven Cheung](http://www.cs.bham.ac.uk/~wtc488/), [Dan R. Ghica](http://www.cs.bham.ac.uk/~drg/). **Abductive functional programming, a semantic approach**. *Prepint*. [\[arivx\]](https://arxiv.org/abs/1710.03984)
 
 ### Libraries
